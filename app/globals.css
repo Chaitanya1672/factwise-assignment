@@ -31,29 +31,5 @@ body {
   color: black;
   justify-content: center;
   font-size: 2rem;
+  margin: 0;
 }
-
-/* .user-accordion {
-  border-radius: 12px;
-  border: 2px solid #c4c4c4;
-  margin-bottom: 1rem;
-}
-.user-list {
-  max-width: 400px;
-  margin: auto;
-}
-.user-accordion::before {
-  display: none;
-}
-
-.user-summary {
-  display: flex;
-  align-items: center;
-}
-
-.circular-loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-} */

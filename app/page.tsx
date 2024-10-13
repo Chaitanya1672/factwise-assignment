@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import UserList from '../components/users/UserList'
 import { USER_MANAGEMENT } from '@/constants/strings'
 

@@ -45,7 +45,6 @@ const UserForm = ({
             fullWidth
             type="number"
             onChange={(e) => {
-              console.log(e.target.value)
               setEditedUser((prevState) => ({
                 ...prevState!,
                 age: Number(e.target.value),

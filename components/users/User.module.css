@@ -1,6 +1,6 @@
 .userAccordion {
-  border-radius: 12px;
   border: 2px solid #c4c4c4;
+  border-radius: 12px !important;
   margin-bottom: 1rem;
 }
 

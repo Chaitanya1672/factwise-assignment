@@ -31,10 +31,7 @@ export const ERROR_MESSAGES = {
 
 export const VALIDATION_ERRORS = {
   age: 'Age must be a number and above 18',
-  country: {
-    required: 'Country is required',
-    invalid: 'Country must be a string',
-  },
+  country: 'Country is required and must contain only letters and spaces',
   description: 'Description is required',
 }
 

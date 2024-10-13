@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect, use } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Accordion,
   AccordionSummary,
@@ -32,7 +32,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
 
 const UserList: React.FC = () => {
   const [users, setUsers] = useState<User[]>([])
-  const [filteredUsers, setFilteredUsers] = useState<User[]>([])
+  const [editableUsers, setEditableUsers] = useState<User[]>([])
   const [searchTerm, setSearchTerm] = useState('')
   const [expandedUser, setExpandedUser] = useState<number | false>(false)
   const [editingUserId, setEditingUserId] = useState<number | null>(null)
@@ -48,32 +48,30 @@ const UserList: React.FC = () => {
         return response.json()
       })
       .then((data) => {
-        const dataWithAge = data.map((user: User) => ({
+        const enhancedUserData = data.map((user: User) => ({
           ...user,
           age: calculateAge(user.dob),
           fullName: `${user.first} ${user.last}`,
         }))
-        setUsers(dataWithAge)
-        setFilteredUsers(dataWithAge)
+        setUsers(enhancedUserData)
+        setEditableUsers(enhancedUserData)
       })
   }, [])
 
   const validateForm = () => {
-    let formErrors: Record<string, string> = {}
+    const formErrors: Record<string, string> = {}
     if (!editedUser) {
       return false
     }
 
     // Age validation
-    if (isNaN(Number(editedUser.age)) || !(Number(editedUser.age) >= 18)) {
+    if (isNaN(editedUser.age!) || !(Number(editedUser.age) >= 18)) {
       formErrors.age = VALIDATION_ERRORS.age
     }
 
     // Country validation
-    if (!editedUser.country) {
-      formErrors.country = VALIDATION_ERRORS.country.invalid
-    } else if (!/^[a-zA-Z]+$/.test(editedUser.country)) {
-      formErrors.country = VALIDATION_ERRORS.country.required
+    if (!/^[A-Za-z\s]+$/.test(editedUser.country.trim())) {
+      formErrors.country = VALIDATION_ERRORS.country
     }
 
     // Description validation
@@ -97,11 +95,11 @@ const UserList: React.FC = () => {
 
   const handleSave = () => {
     if (editedUser && validateForm()) {
-      setUsers(
-        users.map((user) => (user.id === editedUser.id ? editedUser : user)),
-      )
-      setFilteredUsers(
-        filteredUsers.map((user) =>
+      // setUsers(
+      //   users.map((user) => (user.id === editedUser.id ? editedUser : user)),
+      // )
+      setEditableUsers(
+        editableUsers.map((user) =>
           user.id === editedUser.id ? editedUser : user,
         ),
       )
@@ -113,6 +111,7 @@ const UserList: React.FC = () => {
   const handleCancel = () => {
     setEditingUserId(null)
     setEditedUser(null)
+    setErrors({})
   }
 
   const handleDelete = (userId: number) => {
@@ -122,7 +121,7 @@ const UserList: React.FC = () => {
 
   const confirmDelete = () => {
     if (userToDelete) {
-      setFilteredUsers(users.filter((user) => user.id !== userToDelete))
+      setEditableUsers(users.filter((user) => user.id !== userToDelete))
       setDeleteDialogOpen(false)
       setUserToDelete(null)
     }
@@ -135,7 +134,7 @@ const UserList: React.FC = () => {
         .toLowerCase()
         .includes(searchTerm.toLowerCase()),
     )
-    setFilteredUsers(filteredUsers)
+    setEditableUsers(filteredUsers)
   }
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -158,12 +157,12 @@ const UserList: React.FC = () => {
         onChange={(e) => handleSearchTerm(e.target.value)}
         size="small"
       />
-      {filteredUsers.length === 0 && (
+      {editableUsers.length === 0 && (
         <div className={styles.circularLoader}>
           <CircularProgress />
         </div>
       )}
-      {filteredUsers.map((user: User) => (
+      {editableUsers.map((user: User) => (
         <Accordion
           key={user.id}
           expanded={expandedUser === user.id}
@@ -172,7 +171,10 @@ const UserList: React.FC = () => {
           elevation={0}
         >
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <div className={styles.userSummary} onClick={(e) => e.stopPropagation()}>
+            <div
+              className={styles.userSummary}
+              onClick={(e) => e.stopPropagation()}
+            >
               <Avatar
                 src={user.picture}
                 alt={`${user.first} ${user.last}`}

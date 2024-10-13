@@ -7,7 +7,6 @@ import EditIcon from '@mui/icons-material/EditOutlined'
 import { calculateAge } from '@/utils/user'
 import { User } from '@/types/user'
 import { LABELS } from '@/constants/strings'
-import styles from './User.module.css'
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.secondary,
