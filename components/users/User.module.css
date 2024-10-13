@@ -1,0 +1,26 @@
+.userAccordion {
+  border-radius: 12px;
+  border: 2px solid #c4c4c4;
+  margin-bottom: 1rem;
+}
+
+.userList {
+  max-width: 400px;
+  margin: auto;
+}
+
+.userAccordion::before {
+  display: none;
+}
+
+.userSummary {
+  display: flex;
+  align-items: center;
+}
+
+.circularLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
