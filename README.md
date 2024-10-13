@@ -9,27 +9,34 @@ git clone https://github.com/Chaitanya1672/factwise-assignment.git
 npm run install
 npm run dev
 ```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 Root file is `page.tsx`, in `app/page.tsx` folder
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 For running build/deployed version
+
 ```
 npm run build
 npm run start
 ```
+
 ## Features
+
 This project also has integration of linting libraries like eslint, prettier & pre commit hook with husky
+
 ```
 npm run format
 ```
 
 It hase Dockerfile to create container as well
+
 ```
 docker build -t project_name .
-docker run container_id 
+docker run container_id
 ```
+
 ## Deploy on Vercel
 
 It is deployed on vercel
