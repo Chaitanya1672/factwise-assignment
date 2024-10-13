@@ -52,9 +52,9 @@ const UserView = ({ user, handleDelete, handleEdit }: UserViewProps) => {
         <IconButton onClick={() => handleDelete(user.id)}>
           <DeleteIcon color="error" fontSize="large" />
         </IconButton>
-        <IconButton onClick={() => handleEdit(user)} disabled={user?.age! < 18}>
+        <IconButton onClick={() => handleEdit(user)} disabled={user.age < 18}>
           <EditIcon
-            color={user?.age! < 18 ? 'disabled' : 'primary'}
+            color={user.age < 18 ? 'disabled' : 'primary'}
             fontSize="large"
           />
         </IconButton>

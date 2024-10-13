@@ -10,6 +10,6 @@ export interface User {
   description: string
 
   //Custom properties
-  age?: number
-  fullName?: string
+  age: number
+  fullName: string
 }

@@ -39,7 +39,7 @@ const UserForm = ({
           <TextField
             label="Age"
             value={editedUser?.age || calculateAge(editedUser?.dob || '')}
-            disabled={calculateAge(editedUser?.dob || '') < 18}
+            disabled={calculateAge(editedUser?.dob ?? '') < 18}
             margin="normal"
             size="small"
             fullWidth
@@ -60,7 +60,7 @@ const UserForm = ({
           <FormControl fullWidth margin="normal" error={!!errors.gender}>
             <InputLabel id="gender-label">{LABELS.gender}</InputLabel>
             <Select
-              value={editedUser?.gender || ''}
+              value={editedUser?.gender ?? ''}
               onChange={(e) =>
                 setEditedUser({
                   ...editedUser!,
@@ -87,7 +87,7 @@ const UserForm = ({
         <Grid size={4}>
           <TextField
             label="Country"
-            value={editedUser?.country || ''}
+            value={editedUser?.country ?? ''}
             onChange={(e) =>
               setEditedUser({
                 ...editedUser!,
@@ -107,7 +107,7 @@ const UserForm = ({
         <Grid size={12}>
           <TextField
             label="Description"
-            value={editedUser?.description || ''}
+            value={editedUser?.description ?? ''}
             onChange={(e) =>
               setEditedUser({
                 ...editedUser!,
