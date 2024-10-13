@@ -15,6 +15,7 @@ import {
   IconButton,
   styled,
   CircularProgress,
+  InputAdornment,
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/CloseOutlined'
 import UserForm from './UserForm'
@@ -25,6 +26,7 @@ import { DIALOG_TEXT, VALIDATION_ERRORS } from '@/constants/strings'
 import styles from './User.module.css'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
+import SearchIcon from '@mui/icons-material/SearchOutlined'
 
 const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: theme.spacing(1),
@@ -147,13 +149,26 @@ const UserList: React.FC = () => {
   return (
     <div className={styles.userList}>
       <TextField
-        label="Search users"
+        placeholder="Search user"
         variant="outlined"
         fullWidth
+        className="search-bar"
         margin="normal"
         value={searchTerm}
         onChange={(e) => handleSearchTerm(e.target.value)}
         size="small"
+        slotProps={{
+          input: {
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+            sx: {
+              borderRadius: '10px',
+            },
+          },
+        }}
       />
       {editableUsers.length === 0 && (
         <div className={styles.circularLoader}>
