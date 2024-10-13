@@ -16,7 +16,6 @@ import {
   styled,
   CircularProgress,
 } from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import CloseIcon from '@mui/icons-material/CloseOutlined'
 import UserForm from './UserForm'
 import { calculateAge } from '@/utils/user'
@@ -24,6 +23,8 @@ import { User } from '@/types/user'
 import UserView from './UserView'
 import { DIALOG_TEXT, VALIDATION_ERRORS } from '@/constants/strings'
 import styles from './User.module.css'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
 
 const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: theme.spacing(1),
@@ -95,9 +96,6 @@ const UserList: React.FC = () => {
 
   const handleSave = () => {
     if (editedUser && validateForm()) {
-      // setUsers(
-      //   users.map((user) => (user.id === editedUser.id ? editedUser : user)),
-      // )
       setEditableUsers(
         editableUsers.map((user) =>
           user.id === editedUser.id ? editedUser : user,
@@ -170,7 +168,14 @@ const UserList: React.FC = () => {
           className={styles.userAccordion}
           elevation={0}
         >
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <AccordionSummary
+            expandIcon={expandedUser === user.id ? <RemoveIcon /> : <AddIcon />}
+            sx={{
+              '& .Mui-expanded': {
+                margin: '10px 0 !important',
+              },
+            }}
+          >
             <div
               className={styles.userSummary}
               onClick={(e) => e.stopPropagation()}

@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ## Getting Started
+
+Project is built on Next js + App router (14+ version)
 
 First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+It is deployed on vercel
+Link: [chaitanya-facttwise-assesment](https://chaitanya-factwise-assignment.vercel.app/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Requirement/Problem Statement
+
+You are a famous hacker who has access to a list of the world's most famous celebrities.
+You have to create a system where you can view and edit their details to hide their public presence.
+
+Your mission if you choose to accept it, you have to:
+
+1. Create the user interface provided with the design provided
+
+2. The page should have a search bar to search the list by celebrity name.
+
+3. The user list item is an accordion,
+
+   - when clicked on, it will cause all the other accordions to collapse and enlarge the one which was clicked.
+   - If clicked on the same one it will collapse.
+   - Manage the + and - icons in open or collapsed mode (collapsed = - | open = +)
+
+4. Fetch the JSON file provided to fill the list of users. (NOTE - YOU CANNOT EDIT THE JSON FILE)
+
+   - You have to calculate the age of the user based on the date of birth provided
+   - gender should be a dropdown (Male | Female | Transgender | Rather not say | Other)
+   - country is a text field
+   - Description is a text area
+
+5. Provide buttons to edit or delete
+
+   - edit mode will let you edit the details of the user in the exact place
+   - you can only edit the user if the user is an adult
+   - validations to be implemented where a user cannot
+     -- input text in the age field
+     -- input numbers in the nationality
+     -- keep anything empty
+   - when in edit mode you can either save or cancel
+     -- save button will be disabled by default and will enable only if the details have changed
+     -- save click will update the user's details
+     -- cancel will revert the details to their last known state
+     -- you cannot open another accordion while in edit mode
+   - delete mode should alert you if you actually want to delete the user
+     -- if yes - the user will be deleted
+     -- if no - do nothing
+
+6. Typescript is a plus
+
+This message will self destruct in 5... 4... 3... 2... 1... NOT
